@@ -1,8 +1,13 @@
 # NC Federal Local Rules — Quick Reference
 
+**Live site:** https://samhartzell.github.io/NC-USDC-Rules/
+
 A searchable, side-by-side comparison of the Local Rules of the three United
 States District Courts in North Carolina: the Eastern (**EDNC**), Middle
 (**MDNC**), and Western (**WDNC**) Districts.
+
+The site is deployed automatically to GitHub Pages on every push to `main` via
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml).
 
 The goal is one lookup instead of three PDFs: response deadlines, page/word
 limits, formatting specs, filing procedures, and motion practice — each row

@@ -19,7 +19,8 @@
     status: document.getElementById('status'),
     results: document.getElementById('results'),
     sourcesList: document.getElementById('sources-list'),
-    disclaimer: document.getElementById('disclaimer')
+    disclaimer: document.getElementById('disclaimer'),
+    lastUpdated: document.getElementById('last-updated')
   };
 
   // ---------- Boot ----------
@@ -128,6 +129,24 @@
         '<a href="' + escapeAttr(src.landing) + '" target="_blank" rel="noopener">court rules page</a></div>';
     }).join('');
     if (state.meta.disclaimer) els.disclaimer.textContent = state.meta.disclaimer;
+    renderLastUpdated();
+  }
+
+  function renderLastUpdated() {
+    if (!els.lastUpdated) return;
+    var s = state.meta && state.meta.sources;
+    if (!s) return;
+    var best = null;
+    ['ednc', 'mdnc', 'wdnc'].forEach(function (k) {
+      var src = s[k]; if (!src || !src.effective) return;
+      var t = Date.parse(src.effective);
+      if (!isNaN(t) && (best == null || t > best)) best = t;
+    });
+    if (best != null) {
+      var d = new Date(best);
+      var month = d.toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+      els.lastUpdated.textContent = 'Rules current as of ' + month + ' · ';
+    }
   }
 
   // ---------- Filtering + rendering ----------
