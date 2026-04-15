@@ -13,6 +13,7 @@
 |------|---------|
 | 5.1 | Additional paper copies only as judge's preference / by order |
 | 5.3 | Electronic filing required (specific exceptions) |
+| 5.3(e) | ECF signatures — retain originals 2 years post-appeal; multi-signature filings use image or "/s/" with authorization certification |
 | 5.4 / 5.5 | Sealing disfavored; LR 5.5 Report (meet-and-confer); LR 5.4 Checklist + Summary Chart to judge's ECF mailbox within 3 business days |
 | 6.1 | Extensions of time and continuances |
 | 7.1(a) | Formatting: ≥ 13 pt proportional / ≥ 10 cpi fixed pitch; top margin ≥ 1¼"; other margins ≥ 1"; double-spaced; max 27 lines/page; single-sided |
@@ -38,8 +39,11 @@
 | 37.1(b) | Expedited discovery-dispute phone/in-court hearings without briefing |
 | 37.1(c) | Discovery motion — response 14 days; reply 7 days |
 | 40.1(c) | Trial brief — 21 days before trial; 6,250 words / 20 pages |
+| 54.1 | Taxation of costs — 30-day filing; 14-day motion for disallowance; 7-day response |
 | 56.1(a)–(e) | SJ — 14-day notice of intent; 30 days to file dispositive motion; 30-day response; 14-day reply; word/page limits |
+| 65.1 | Injunctions and temporary restraining orders — separate motion and brief; decided on papers absent request for oral argument |
 | 72.4 | Objections to magistrate-judge R&R — 6,250 words / 20 pages |
+| 73.1 | Consent to civil-trial jurisdiction by magistrate judge — letter/form to clerk; public-file filing only upon reference order |
 
 ## Case-management tracks (LR 26.1(a))
 
@@ -55,3 +59,6 @@
 - **LR 5.4/5.5 sealing procedure** requires a meet-and-confer, a filed Report, and delivery of a Checklist + Summary Chart to the judge's ECF mailbox within 3 business days of any motion to seal.
 - **SJ briefs must be filed within 30 days of close of discovery**; a **notice of intent** to file must be served within **14 days** of close of discovery (LR 56.1(a)–(b)).
 - Related counsel must file a single brief under the length cap (LR 7.3(d)(4)).
+- **No dedicated local rule for removed actions** — procedure follows 28 U.S.C. §§ 1446–1447 and Fed. R. Civ. P. 81(c).
+- **TRO/PI** under LR 65.1: prayers in a pleading do not bring the issue before the court; a separate motion and brief are required, and motions are decided on papers unless oral argument or testimony is requested *in the motion or response*.
+- **ECF signature retention**: LR 5.3(e)(1) requires the attorney to keep the original signed document for two years after the appeal deadline or receipt of an order terminating appeal.
