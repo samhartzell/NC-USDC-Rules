@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NC Federal Local Rules — Quick Reference (EDNC / MDNC / WDNC)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <h1>NC Federal Local Rules — Quick Reference</h1>
+    <p class="tagline">Side-by-side comparison of the local rules of the Eastern, Middle, and Western Districts of North Carolina. Searchable. No more flipping through three PDFs.</p>
+  </div>
+</header>
+
+<nav class="controls">
+  <div class="wrap">
+    <div class="search-row">
+      <input id="search" type="search" placeholder="Search rules (e.g. 'reply', 'font', 'summary judgment', '26(f)')" autocomplete="off" autofocus>
+      <button id="clear" type="button" aria-label="Clear search">Clear</button>
+    </div>
+    <div id="chips" class="chips" role="tablist" aria-label="Filter by category"></div>
+    <p id="status" class="status" aria-live="polite"></p>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="results" aria-label="Rules comparison">
+    <div id="loading" class="loading">Loading rules…</div>
+  </section>
+  <section id="sources" class="sources" aria-label="Source rules">
+    <h2>Sources</h2>
+    <div id="sources-list"></div>
+    <p class="disclaimer" id="disclaimer"></p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Not legal advice. Local rules change; always verify against the current rules of the district before filing. Judges' standing orders and case-specific scheduling orders may supersede these defaults.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
