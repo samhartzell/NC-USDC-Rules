@@ -1,0 +1,334 @@
+{
+  "meta": {
+    "sources": {
+      "ednc": {
+        "name": "Eastern District of North Carolina",
+        "rulesTitle": "Local Civil Rules of Practice and Procedure",
+        "effective": "May 2023",
+        "url": "https://www.nced.uscourts.gov/pdfs/Local%20Civil%20Rules%202023.pdf",
+        "landing": "https://www.nced.uscourts.gov/rules/default.aspx"
+      },
+      "mdnc": {
+        "name": "Middle District of North Carolina",
+        "rulesTitle": "Rules of Practice and Procedure",
+        "effective": "April 3, 2024",
+        "url": "https://www.ncmd.uscourts.gov/sites/ncmd/files/CIV_LR_2024.pdf",
+        "landing": "https://www.ncmd.uscourts.gov/local-rules-and-orders"
+      },
+      "wdnc": {
+        "name": "Western District of North Carolina",
+        "rulesTitle": "Rules of Practice and Procedure (2017 ed., as revised)",
+        "effective": "December 1, 2018",
+        "url": "https://www.ncwd.uscourts.gov/sites/default/files/local_rules/Revised_Local_Rules_1.pdf",
+        "landing": "https://www.ncwd.uscourts.gov/court-info/local-rules-and-orders/local-rules"
+      }
+    },
+    "disclaimer": "Local rules are amended periodically. Always verify against the current PDF before filing. Judges' standing orders and case-specific scheduling orders may supersede defaults."
+  },
+  "rules": [
+    {
+      "id": "response-nondispositive",
+      "category": "Deadlines",
+      "topic": "Response to a nondispositive motion",
+      "ednc": { "value": "21 days after service of the motion", "cite": "L.Civ.R. 7.1(f)(1)" },
+      "mdnc": { "value": "21 days after service of the motion", "cite": "LR 7.3(f)" },
+      "wdnc": { "value": "14 days after service of the motion", "cite": "LCvR 7.1(e)" }
+    },
+    {
+      "id": "response-sj",
+      "category": "Deadlines",
+      "topic": "Response to a summary-judgment / dispositive motion",
+      "ednc": { "value": "21 days (same as other nondiscovery motions)", "cite": "L.Civ.R. 7.1(f)(1)" },
+      "mdnc": { "value": "30 days after service of the motion", "cite": "LR 7.3(f); LR 56.1(d)–(e)" },
+      "wdnc": { "value": "14 days (no separate SJ deadline; judge's standing order may vary)", "cite": "LCvR 7.1(e)" }
+    },
+    {
+      "id": "response-discovery",
+      "category": "Deadlines",
+      "topic": "Response to a discovery motion",
+      "ednc": { "value": "14 days after service", "cite": "L.Civ.R. 7.1(f)(2); 26.1(d)(2)" },
+      "mdnc": { "value": "14 days after service", "cite": "LR 37.1(c)" },
+      "wdnc": { "value": "14 days (no separate discovery-motion deadline)", "cite": "LCvR 7.1(e)" }
+    },
+    {
+      "id": "reply-nondispositive",
+      "category": "Deadlines",
+      "topic": "Reply brief — nondispositive / dispositive motion",
+      "ednc": { "value": "14 days after service of response (replies \"discouraged\")", "cite": "L.Civ.R. 7.1(g)(1)" },
+      "mdnc": { "value": "14 days after service of response (limited to new matter)", "cite": "LR 7.3(h); LR 56.1(d)–(e)" },
+      "wdnc": { "value": "7 days after service of response; surreplies not allowed without leave", "cite": "LCvR 7.1(e)" }
+    },
+    {
+      "id": "reply-discovery",
+      "category": "Deadlines",
+      "topic": "Reply — discovery motion",
+      "ednc": { "value": "Replies not permitted in discovery disputes", "cite": "L.Civ.R. 7.1(g)(2); 26.1(d)(3)" },
+      "mdnc": { "value": "7 days after service of response", "cite": "LR 37.1(c); LR 26.2(d)" },
+      "wdnc": { "value": "7 days after service of response", "cite": "LCvR 7.1(e)" }
+    },
+    {
+      "id": "motions-deadline",
+      "category": "Deadlines",
+      "topic": "Deadline to file motions (after close of discovery)",
+      "ednc": { "value": "30 days after close of discovery (except motions re: trial evidence)", "cite": "L.Civ.R. 7.1(a)" },
+      "mdnc": { "value": "Notice of intent to file dispositive motion within 14 days; dispositive motion within 30 days after close of discovery", "cite": "LR 56.1(a)–(b)" },
+      "wdnc": { "value": "Set by the presiding judge's Scheduling / Case Management Order", "cite": "LCvR 16.1(g)" }
+    },
+    {
+      "id": "rule-26f",
+      "category": "Deadlines",
+      "topic": "Rule 26(f) conference / Initial Attorneys' Conference",
+      "ednc": { "value": "Mandatory planning meeting; Rule 26(f) report required (court form in Rule 26.1(e)(2))", "cite": "L.Civ.R. 26.1(e)(2)" },
+      "mdnc": { "value": "Rule 26(f) meeting at least 14 days before initial pretrial conference; joint or separate report filed within 10 days of meeting", "cite": "LR 16.1(b)" },
+      "wdnc": { "value": "Initial Attorneys' Conference (IAC) within 14 days of joinder of issues; Certificate of IAC filed within 7 days of IAC", "cite": "LCvR 16.1(a)–(b)" }
+    },
+    {
+      "id": "discovery-period",
+      "category": "Deadlines",
+      "topic": "Discovery period / case-management track",
+      "ednc": { "value": "Set by scheduling order after 26(f) report (no default track in local rules)", "cite": "L.Civ.R. 26.1(e)(2)" },
+      "mdnc": { "value": "Three tracks: Standard 4 months; Complex 6 months; Exceptional 9 months (from commencement date in IPTO)", "cite": "LR 26.1(a)(1)–(3)" },
+      "wdnc": { "value": "Set by the Scheduling Order; court-enforceable discovery does not commence until Scheduling Order issues", "cite": "LCvR 26.1" }
+    },
+    {
+      "id": "extension-of-time",
+      "category": "Deadlines",
+      "topic": "Motion for extension of time",
+      "ednc": { "value": "Good cause + good-faith conferral with affected parties/nonparties; proposed order required", "cite": "L.Civ.R. 6.1" },
+      "mdnc": { "value": "Governed by LR 6.1; no brief required if timely", "cite": "LR 6.1; LR 7.3(j)(2)" },
+      "wdnc": { "value": "No brief required for timely extension motions; consultation not required for initial-response extensions", "cite": "LCvR 7.1(b)–(c)" }
+    },
+    {
+      "id": "objections-r-and-r",
+      "category": "Deadlines",
+      "topic": "Objections to magistrate-judge R&R — length limit",
+      "ednc": { "value": "No district-specific length cap; use Rule 7.2(f) memoranda limits", "cite": "L.Civ.R. 7.2(f)" },
+      "mdnc": { "value": "6,250 words / 20 pages", "cite": "LR 72.4" },
+      "wdnc": { "value": "No local-rule length cap; follows default LCvR 7.1(d) 25-page limit", "cite": "LCvR 7.1(d)" }
+    },
+    {
+      "id": "brief-length-opening",
+      "category": "Page / Word Limits",
+      "topic": "Supporting or opposing memorandum — nondiscovery",
+      "ednc": { "value": "30 pages OR 8,400 words", "cite": "L.Civ.R. 7.2(f)(2)(A), (f)(3)(A)" },
+      "mdnc": { "value": "6,250 words (computer) or 20 pages (typewriter/handwritten)", "cite": "LR 7.3(d)(1)–(2)" },
+      "wdnc": { "value": "25 pages (default; judge's standing order may alter)", "cite": "LCvR 7.1(d)" }
+    },
+    {
+      "id": "brief-length-reply",
+      "category": "Page / Word Limits",
+      "topic": "Reply / surreply memorandum",
+      "ednc": { "value": "10 pages OR 2,800 words", "cite": "L.Civ.R. 7.2(f)(2)(C), (f)(3)(C)" },
+      "mdnc": { "value": "3,125 words (computer) or 10 pages (typewriter/handwritten)", "cite": "LR 7.3(d)(1)–(2)" },
+      "wdnc": { "value": "No separate cap; within overall 25-page default (surreplies disallowed absent leave)", "cite": "LCvR 7.1(d)–(e)" }
+    },
+    {
+      "id": "brief-length-discovery",
+      "category": "Page / Word Limits",
+      "topic": "Discovery-motion memorandum",
+      "ednc": { "value": "10 pages OR 2,800 words", "cite": "L.Civ.R. 7.2(f)(2)(B), (f)(3)(B)" },
+      "mdnc": { "value": "Same as other briefs (6,250 / 20 pages); expedited resolution may be agreed under LR 37.1(b) with no briefing", "cite": "LR 7.3(d); LR 37.1(b)" },
+      "wdnc": { "value": "25 pages default (no separate discovery-motion cap)", "cite": "LCvR 7.1(d)" }
+    },
+    {
+      "id": "brief-length-sj",
+      "category": "Page / Word Limits",
+      "topic": "Summary-judgment brief",
+      "ednc": { "value": "30 pages / 8,400 words (principal); 10 pages / 2,800 words (reply)", "cite": "L.Civ.R. 7.2(f); 56.1" },
+      "mdnc": { "value": "6,250 words (principal/response) or 20 pages; 3,125 words (reply) or 10 pages", "cite": "LR 56.1(c); LR 7.3(d)" },
+      "wdnc": { "value": "25 pages default (judge's standing order may vary)", "cite": "LCvR 7.1(d)" }
+    },
+    {
+      "id": "word-count-cert",
+      "category": "Page / Word Limits",
+      "topic": "Word-count certificate required?",
+      "ednc": { "value": "Yes — required when using the word-limit option; must state word count and certify compliance", "cite": "L.Civ.R. 7.2(f)(3)" },
+      "mdnc": { "value": "Yes — every brief must include a certificate of word count", "cite": "LR 7.3(d)(1)" },
+      "wdnc": { "value": "Not required by local rule (local rule uses pages)", "cite": "LCvR 7.1(d)" }
+    },
+    {
+      "id": "trial-brief",
+      "category": "Page / Word Limits",
+      "topic": "Trial brief",
+      "ednc": { "value": "No specific length cap; filed 7 days before trial with motions re: evidence admissibility", "cite": "L.Civ.R. 39.1(a)" },
+      "mdnc": { "value": "6,250 words / 20 pages; filed at least 21 days before trial", "cite": "LR 40.1(c)" },
+      "wdnc": { "value": "Set by presiding judge / Case Management Order", "cite": "LCvR 16.1(g)" }
+    },
+    {
+      "id": "font-spacing-margins",
+      "category": "Formatting",
+      "topic": "Font, line spacing, margins",
+      "ednc": { "value": "At least 11-point font, double-spaced, 1-inch margins on all sides, 8½ × 11 paper, single-sided", "cite": "L.Civ.R. 10.1(a)" },
+      "mdnc": { "value": "Proportional font ≥ 13 point OR fixed-pitch ≥ 10 chars/inch; double-spaced; top margin ≥ 1¼\", other margins ≥ 1\"; max 27 lines per page; single-sided", "cite": "LR 7.1(a)" },
+      "wdnc": { "value": "Font ≥ 12 point, double-spaced, 1-inch margins, each page numbered (default; Standing Civil Order may vary)", "cite": "LCvR 7.1(d)" }
+    },
+    {
+      "id": "signature-block",
+      "category": "Formatting",
+      "topic": "Signature block / attorney info",
+      "ednc": { "value": "Name, firm, address, phone, fax, email, state bar no. of all filing attorneys; printed name below signature", "cite": "L.Civ.R. 10.1(f), (i)" },
+      "mdnc": { "value": "Telephone, mailing address, email; state bar number for attorneys admitted to this Court", "cite": "LR 7.1(b)" },
+      "wdnc": { "value": "Not separately specified in civil rule; follow Administrative Procedures / standing orders", "cite": "LCvR 5.2.1; LCvR 7.1" }
+    },
+    {
+      "id": "exhibits-double-sided",
+      "category": "Formatting",
+      "topic": "Double-sided exhibits",
+      "ednc": { "value": "Not permitted; will not be considered. Condensed deposition transcripts discouraged.", "cite": "L.Civ.R. 10.2" },
+      "mdnc": { "value": "Pages must be single-sided (applies generally)", "cite": "LR 7.1(a)" },
+      "wdnc": { "value": "Not specified; exhibits must be numbered and filed as separate attachments", "cite": "LCvR 7.1(c)(3)" }
+    },
+    {
+      "id": "supplemental-auth",
+      "category": "Formatting",
+      "topic": "Notice of supplemental / subsequently decided authority",
+      "ednc": { "value": "Citation only (copy of opinion if unpublished); no argument", "cite": "L.Civ.R. 7.1(h)" },
+      "mdnc": { "value": "Citation only (copy of opinion if unpublished); no argument", "cite": "LR 7.3(i)" },
+      "wdnc": { "value": "Notice must state reasons + page of brief; ≤ 2 pages; response similarly limited", "cite": "LCvR 7.1(j)" }
+    },
+    {
+      "id": "courtesy-copies",
+      "category": "Filing & Service",
+      "topic": "Courtesy / chambers copies",
+      "ednc": { "value": "Not a general rule for civil cases; follow assigned judge's practice preferences (specific rule exists for bankruptcy appeals, L.Civ.R. 83.7(b))", "cite": "(judge preferences)" },
+      "mdnc": { "value": "Paper copies only as required by presiding judge's Judicial Preferences page or by court order", "cite": "LR 5.1" },
+      "wdnc": { "value": "Not specified; follow Administrative Procedures and standing orders", "cite": "(Admin. Procedures)" }
+    },
+    {
+      "id": "ecf-required",
+      "category": "Filing & Service",
+      "topic": "Electronic filing required?",
+      "ednc": { "value": "Yes — electronic filing required for registered users; specific exceptions (pro se, sealed, certain criminal papers)", "cite": "L.Civ.R. 5.1(a)–(f)" },
+      "mdnc": { "value": "Yes — all documents must be filed electronically except listed exceptions (pro se, sealed, Qui Tam, trial exhibits, certain criminal papers)", "cite": "LR 5.3(a)" },
+      "wdnc": { "value": "Yes — governed by LCvR 5.2.1 and the Administrative Procedures", "cite": "LCvR 5.2.1" }
+    },
+    {
+      "id": "sealed-filings",
+      "category": "Filing & Service",
+      "topic": "Sealed filings procedure",
+      "ednc": { "value": "Motion to seal required; specific procedure in L.Civ.R. 79.2; medical records must be accompanied by motion to seal", "cite": "L.Civ.R. 79.2; 26.1(a)(1)" },
+      "mdnc": { "value": "Sealing disfavored; LR 5.5 Report required (meet-and-confer); LR 5.4 Checklist + Summary Chart to judge's ECF mailbox within 3 business days", "cite": "LR 5.4" },
+      "wdnc": { "value": "Motion to seal (separate from underlying pleading) with specific findings; public notice via docket", "cite": "LCvR 6.1" }
+    },
+    {
+      "id": "proposed-orders",
+      "category": "Filing & Service",
+      "topic": "Proposed orders",
+      "ednc": { "value": "Required with motions for extension of time and consented/unopposed nondispositive motions; generally required with motion unless clerk may act", "cite": "L.Civ.R. 6.1; 7.1(b)(3)" },
+      "mdnc": { "value": "Required for motions not requiring briefs (LR 7.3(j)); email to judge's ECF mailbox", "cite": "LR 5.3(f); LR 7.3(j)" },
+      "wdnc": { "value": "Not required unless court orders; submit via Cyberclerk if directed", "cite": "LCvR 7.1(g)" }
+    },
+    {
+      "id": "amended-pleading",
+      "category": "Motion Practice",
+      "topic": "Amended pleading — attachments to motion",
+      "ednc": { "value": "Attach (i) proposed amended pleading (signed, with exhibits) and (ii) redline showing changes; incarcerated pro se exempt from redline", "cite": "L.Civ.R. 15.1" },
+      "mdnc": { "value": "Attach the proposed amended pleading to the motion (no redline required by rule)", "cite": "LR 15.1" },
+      "wdnc": { "value": "Not separately specified by local rule", "cite": "(Fed. R. Civ. P. 15)" }
+    },
+    {
+      "id": "meet-confer",
+      "category": "Motion Practice",
+      "topic": "Meet-and-confer / certificate of conference",
+      "ednc": { "value": "Required for extension motions (L.Civ.R. 6.1) and discovery motions (good-faith certification, L.Civ.R. 7.1(c)(2))", "cite": "L.Civ.R. 6.1; 7.1(c)(2)" },
+      "mdnc": { "value": "Required for discovery motions; certificate must state date, participants, and specific results achieved", "cite": "LR 37.1(a)" },
+      "wdnc": { "value": "Required for all civil motions (Certificate of Consultation), with exceptions for dispositive motions, represented-vs-pro-se, and initial-response extensions", "cite": "LCvR 7.1(b)" }
+    },
+    {
+      "id": "hearings",
+      "category": "Motion Practice",
+      "topic": "Hearings / oral argument",
+      "ednc": { "value": "Motions decided without hearing unless court orders otherwise; hearings at court's discretion", "cite": "L.Civ.R. 7.1(j)" },
+      "mdnc": { "value": "Decided on papers unless court orders otherwise; clerk gives ≥ 7 days' notice of oral argument", "cite": "LR 7.3(c)" },
+      "wdnc": { "value": "Motions ordinarily ruled on without oral argument", "cite": "LCvR 7.1(a)" }
+    },
+    {
+      "id": "motion-separate-doc",
+      "category": "Motion Practice",
+      "topic": "One motion per document; no motions in responsive briefs",
+      "ednc": { "value": "Motions shall be concise and state relief requested; no explicit \"separate document\" rule", "cite": "L.Civ.R. 7.1(b)(1)" },
+      "mdnc": { "value": "Each motion in a separate document; related counsel must join in a single brief subject to length limits", "cite": "LR 7.3(a), (d)(4)" },
+      "wdnc": { "value": "Motions must not be included in responsive briefs; each motion as a separately filed pleading", "cite": "LCvR 7.1(c)(2)" }
+    },
+    {
+      "id": "sj-statement-of-facts",
+      "category": "Motion Practice",
+      "topic": "Summary-judgment statement of material facts",
+      "ednc": { "value": "Required: separate numbered statement of material facts; opposing party must respond in correspondingly numbered paragraphs; unchallenged facts deemed admitted; appendix of evidence required", "cite": "L.Civ.R. 56.1(a)" },
+      "mdnc": { "value": "Statement-of-elements approach (not a separate numbered-fact statement); briefs must set out elements and authenticated facts", "cite": "LR 56.1(d)–(e)" },
+      "wdnc": { "value": "Not separately required by local rule; follow judge's standing order", "cite": "LCvR 7.1(d)" }
+    },
+    {
+      "id": "discovery-meet-confer",
+      "category": "Discovery",
+      "topic": "Discovery-motion meet-and-confer certification",
+      "ednc": { "value": "Good-faith certification required; motion must attach specific question/objection with grounds", "cite": "L.Civ.R. 7.1(c)(2)" },
+      "mdnc": { "value": "Personal-consultation certificate required: date, participants, specific results achieved", "cite": "LR 37.1(a)" },
+      "wdnc": { "value": "General Certificate of Consultation required on all civil motions (see \"meet-and-confer\" row)", "cite": "LCvR 7.1(b)" }
+    },
+    {
+      "id": "expedited-discovery",
+      "category": "Discovery",
+      "topic": "Expedited discovery-dispute procedure",
+      "ednc": { "value": "All discovery motions handled on expedited briefing: 14-day response; no replies; oral argument by phone permitted", "cite": "L.Civ.R. 26.1(d)" },
+      "mdnc": { "value": "By agreement, 30-minute telephone conference or 1-hour in-court hearing before magistrate judge without briefing", "cite": "LR 37.1(b)" },
+      "wdnc": { "value": "Judges may set expedited procedures in their Scheduling Order (2015 FRCP 16 amendment)", "cite": "LCvR 16.1 cmt." }
+    },
+    {
+      "id": "interrogatory-limit",
+      "category": "Discovery",
+      "topic": "Interrogatory limit",
+      "ednc": { "value": "No district-wide cap (parties propose in Rule 26(f) report; default Fed. R. Civ. P. 33 = 25)", "cite": "L.Civ.R. 26.1; 33.1" },
+      "mdnc": { "value": "Presumptive caps by track: Standard 15; Complex 25; Exceptional 30 (includes subparts; same for requests for admission)", "cite": "LR 26.1(a)" },
+      "wdnc": { "value": "Set in Scheduling Order / Pretrial Order; no local-rule numeric cap", "cite": "LCvR 16.1(g)" }
+    },
+    {
+      "id": "deposition-limit",
+      "category": "Discovery",
+      "topic": "Deposition limit",
+      "ednc": { "value": "No district-wide cap (parties propose in Rule 26(f) report; default Fed. R. Civ. P. 30 = 10)", "cite": "L.Civ.R. 26.1" },
+      "mdnc": { "value": "Presumptive caps by track (per side, including experts): Standard 4; Complex 7; Exceptional 10", "cite": "LR 26.1(a)" },
+      "wdnc": { "value": "Set in Scheduling Order / Pretrial Order; no local-rule numeric cap", "cite": "LCvR 16.1(g)" }
+    },
+    {
+      "id": "deposition-conduct",
+      "category": "Discovery",
+      "topic": "Deposition conduct guidelines",
+      "ednc": { "value": "No detailed local guidelines (follow Fed. R. Civ. P. 30)", "cite": "L.Civ.R. 30.1" },
+      "mdnc": { "value": "Specific guidelines: no instructions not to answer except on privilege; succinct objections; no off-record conferences except on privilege; deposing counsel must provide witness's counsel copy of documents shown", "cite": "LR 30.1" },
+      "wdnc": { "value": "No detailed local guidelines (follow Fed. R. Civ. P. 30)", "cite": "(Fed. R. Civ. P. 30)" }
+    },
+    {
+      "id": "discovery-filing",
+      "category": "Discovery",
+      "topic": "Filing discovery materials with the court",
+      "ednc": { "value": "Do not file discovery materials unless ordered or needed for proceedings", "cite": "L.Civ.R. 26.1(a)" },
+      "mdnc": { "value": "Do not file unless ordered or needed; party seeking discovery relief must attach the specific relevant portion", "cite": "LR 26.1(b)(3)" },
+      "wdnc": { "value": "Do not file unless (1) ordered, (2) needed in-court, or (3) filed to support/oppose motion", "cite": "LCvR 26.2" }
+    },
+    {
+      "id": "protective-orders",
+      "category": "Discovery",
+      "topic": "Motion for protective order — briefing",
+      "ednc": { "value": "Treated as discovery motion (14-day response, no reply)", "cite": "L.Civ.R. 7.1(f)(2), (g)(2)" },
+      "mdnc": { "value": "14-day response; 7-day reply; specific good-cause showing required", "cite": "LR 26.2" },
+      "wdnc": { "value": "Follow general motion deadlines (14-day response, 7-day reply)", "cite": "LCvR 7.1(e)" }
+    },
+    {
+      "id": "mediated-settlement",
+      "category": "Motion Practice",
+      "topic": "Mandatory mediation / settlement conference",
+      "ednc": { "value": "Mediation mandatory in certain cases; parties may address in Rule 26(f) report", "cite": "L.Civ.R. 101.1a" },
+      "mdnc": { "value": "Mediated settlement conferences conducted during discovery under LR 16.4 and LR 83.9a–g", "cite": "LR 16.4; LR 83.9a–g" },
+      "wdnc": { "value": "Mandatory mediated settlement conference in all civil actions unless otherwise ordered; governed by N.C. Supreme Court Mediation Rules as modified", "cite": "LCvR 16.2–16.3" }
+    },
+    {
+      "id": "criminal-response",
+      "category": "Motion Practice",
+      "topic": "Criminal motion — response deadline",
+      "ednc": { "value": "Governed by Local Criminal Rules; not included in civil rules", "cite": "(Local Criminal Rules)" },
+      "mdnc": { "value": "Governed by Local Criminal Rules (Feb. 5, 2024)", "cite": "(Local Criminal Rules)" },
+      "wdnc": { "value": "7 days after service of the motion, unless otherwise directed", "cite": "LCrR 47.1(e)" }
+    }
+  ]
+}
