@@ -10,7 +10,8 @@ compares all three courts with citations to the governing local rule.
 
 ## Use it
 
-- **Hosted / offline:** open `index.html` in any modern browser.
+- **Hosted:** <https://samhartzell.github.io/NC-USDC-Rules/>
+- **Offline:** open `index.html` in any modern browser.
 - **If your browser blocks `fetch()` on `file://`** (some do), serve the
   directory locally:
   ```
@@ -71,6 +72,13 @@ sources/
 4. Update the rule index in `sources/<DISTRICT>-local-rules.md` if rule
    numbers changed.
 5. Commit. No build step — the change is live on reload.
+
+## Deploy
+
+The hosted copy is published by `.github/workflows/pages.yml`. Any push to
+`main` redeploys the site to GitHub Pages; no build step runs, the repo is
+uploaded as-is. Manual re-runs are available from the Actions tab
+(`workflow_dispatch`).
 
 ## Current sources
 
