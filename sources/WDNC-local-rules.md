@@ -10,7 +10,7 @@
 
 | Rule | Subject |
 |------|---------|
-| 5.2.1 | Filing of papers, redacted pleadings, and presentation to judges |
+| 5.2.1 | Filing of papers, redacted pleadings, and presentation to judges; ECF filing governed by the court's Administrative Procedures |
 | 6.1 | Sealed filings and public access (motion to seal is separate from underlying pleading) |
 | 7.1(a) | Motions in writing; ordinarily ruled on without oral argument |
 | 7.1(b) | Certificate of Consultation required (with narrow exceptions for dispositive motions, represented-vs-pro-se, and extensions of time for an initial responsive pleading) |
@@ -30,7 +30,9 @@
 | 26.1 | Court-enforceable discovery does not commence until Scheduling Order |
 | 26.2 | Discovery material not filed unless ordered, needed, or supporting a motion |
 | 47.1 | Contact with jurors before trial and during voir dire |
-| 83.1 | Attorney admission and eligibility |
+| 54.1 | Taxation of costs (other than attorney fees) — 30-day filing; 14-day objection; 7-day reply |
+| 73.1 | Trial by consent before a magistrate judge; removing party's duty to serve consent documents with the notice of removal |
+| 83.1 | Attorney admission and eligibility; ECF account required; ECF User ID used as signature |
 | **LCrR 47.1** | Criminal motions practice — response **within 7 days**, proposed orders not required |
 
 ## Notes / pitfalls
@@ -41,3 +43,7 @@
 - **Mediated settlement conference is mandatory** in all civil actions unless otherwise ordered (LCvR 16.2–16.3), governed by the N.C. Supreme Court Mediation Rules as modified for federal practice.
 - **Criminal motions**: response within 7 days (LCrR 47.1(e)); consult with opposing counsel required (except for motions to suppress and ex parte motions).
 - No numeric cap on interrogatories/depositions in the local rules; set by the Scheduling Order.
+- **No dedicated TRO / preliminary injunction briefing rule** — follow Fed. R. Civ. P. 65 and the assigned judge's standing order; LCvR 3.1 covers bond / surety requirements.
+- **No dedicated post-removal procedural rule**, but LCvR 73.1(b) places a specific duty on the removing party to serve the Case Assignment Notice, Notice of Availability of a Magistrate Judge, and Joint Stipulation of Consent on all parties *with the notice of removal*.
+- **Magistrate-judge consent** procedure is unique to WDNC: the issue must be discussed at the Initial Attorneys' Conference and the parties' position certified in the Certificate of IAC; failure to file the Joint Stipulation by the LCvR 16.1(c) deadline is presumed a declination.
+- **ECF signature** conventions live in the court's Administrative Procedures (CM/ECF) and LCvR 83.1 — each attorney's ECF User ID serves as the signature for filings on that account.

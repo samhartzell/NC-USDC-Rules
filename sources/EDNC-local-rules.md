@@ -10,7 +10,8 @@
 
 | Rule | Subject |
 |------|---------|
-| 5.1 | Filing and service of papers |
+| 5.1 | Filing and service of papers (incl. electronic filing, CM/ECF Policy Manual) |
+| 5.3 | Removal and post-removal procedure (state-court record, 7-day § 1446(d) notice, 14-day appearances, pending-motion briefing) |
 | 6.1 | Motions for extension of time |
 | 7.1(a) | Deadline to file motions — 30 days after close of discovery |
 | 7.1(b) | General motion requirements |
@@ -33,7 +34,10 @@
 | 26.1(e)(2) | Rule 26(f) planning meeting and report |
 | 30.1, 32.1, 33.1, 34.1, 36.1 | Depositions, interrogatories, RFPs, RFAs |
 | 39.1 | Trial preparation — filings 7 days before trial |
+| 54.1 | Bill of costs — 30-day filing window, 14-day objection, 7-day reply |
 | 56.1 | Summary judgment — separate numbered statement of material facts + appendix |
+| 72.2(b) | Consent to magistrate-judge civil-trial jurisdiction (former 73.1 vacated Dec. 1, 2015) |
+| 72.3(c)(1)(a) | Injunctive relief (TRO / preliminary / permanent injunctions) — R&R treatment |
 | 79.2 | Sealed documents procedure |
 
 ## Notes / pitfalls
@@ -42,3 +46,7 @@
 - Discovery motions are on an **expedited track**: no replies, 14-day response (26.1(d)).
 - No numeric cap on interrogatories/depositions in the local rules; set via the Rule 26(f) report.
 - Courtesy-copy rule in the EDNC civil rules exists only for bankruptcy appeals (Rule 83.7(b)); for ordinary civil matters follow the assigned judge's preferences.
+- **Removal** (L.Civ.R. 5.3) is uniquely detailed here — state-court pleadings must be filed as *separate, distinctly-titled exhibits*, and pending-motion briefing runs on specific clocks (14 days for a missing supporting brief, 21 days for a response when a brief was already filed).
+- **Magistrate-judge consent** now lives in L.Civ.R. 72.2(b); the old Rule 73.1 was vacated effective December 1, 2015. The PDF still shows a bracketed placeholder at that rule number.
+- There is no dedicated **TRO / preliminary injunction** briefing rule; L.Civ.R. 65.1 is only about sureties. For injunctive-relief motions, follow Fed. R. Civ. P. 65 and the assigned judge's standing order; note that L.Civ.R. 72.3(c)(1)(a) classifies them as dispositive for magistrate-R&R purposes.
+- **ECF signature** conventions (including the `/s/` form and retention of originals) are in the CM/ECF Policy Manual referenced by L.Civ.R. 5.1; the signature block format is L.Civ.R. 10.1(f), (i).

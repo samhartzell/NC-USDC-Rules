@@ -329,6 +329,50 @@
       "ednc": { "value": "Governed by Local Criminal Rules; not included in civil rules", "cite": "(Local Criminal Rules)" },
       "mdnc": { "value": "Governed by Local Criminal Rules (Feb. 5, 2024)", "cite": "(Local Criminal Rules)" },
       "wdnc": { "value": "7 days after service of the motion, unless otherwise directed", "cite": "LCrR 47.1(e)" }
+    },
+    {
+      "id": "tro-pi-briefing",
+      "category": "Motion Practice",
+      "topic": "TRO / preliminary injunction — form of application & hearing",
+      "ednc": { "value": "No dedicated local-rule briefing requirement; follow Fed. R. Civ. P. 65 and judge's standing order. Injunctive relief (including TROs and preliminary/permanent injunctions) is dispositive — a magistrate judge may submit proposed findings and R&R", "cite": "L.Civ.R. 72.3(c)(1)(a)" },
+      "mdnc": { "value": "A prayer in a pleading does not present the issue. A party seeking pre-trial relief must file a separate motion and brief. Decided on the court file (affidavits, briefs, supporting documents) without oral argument or testimony unless a request is included in the motion or response", "cite": "LR 65.1(a)–(b)" },
+      "wdnc": { "value": "No dedicated TRO/PI briefing rule; follow Fed. R. Civ. P. 65 and judge's standing order. LCvR 3.1 governs bond/surety for injunctive relief", "cite": "LCvR 3.1; Fed. R. Civ. P. 65" },
+      "notes": "MDNC is the only district with a district-specific TRO/PI briefing procedure; EDNC and WDNC defer to Rule 65 and the assigned judge's practice."
+    },
+    {
+      "id": "bill-of-costs",
+      "category": "Post-Judgment & Removal",
+      "topic": "Bill of costs — filing deadline & objections",
+      "ednc": { "value": "File on AO Form 133 within 30 days after (A) expiration of time for appeal of a final judgment, or (B) receipt by the clerk of the mandate or other order terminating appeal. Objections due 14 days after filing; reply 7 days. Untimely filing waives costs", "cite": "L.Civ.R. 54.1(a)–(b)" },
+      "mdnc": { "value": "File on clerk's-office form within 30 days after (i) expiration of time for appeal, or (ii) receipt by clerk of an order terminating the action on appeal. Objections filed as a motion for disallowance with supporting brief 14 days after filing; response 7 days. Untimely filing waives costs", "cite": "LR 54.1(a)–(b)" },
+      "wdnc": { "value": "File on clerk's-office form within 30 days after (1) expiration of time for appeal, or (2) receipt of the mandate or other order terminating the action on appeal. Objection with supporting brief 14 days after electronic filing; response 7 days. Untimely filing waives costs", "cite": "LCvR 54.1(a)–(d)" },
+      "notes": "All three districts align on a 30-day filing window, 14-day objection, and 7-day reply; waiver consequence for untimely filing is identical."
+    },
+    {
+      "id": "magistrate-consent",
+      "category": "Filing & Service",
+      "topic": "Consent to magistrate-judge civil-trial jurisdiction (28 U.S.C. § 636(c))",
+      "ednc": { "value": "Consent/reassignment procedure set in L.Civ.R. 72.2(b); magistrate judges specially designated to exercise § 636(c) jurisdiction on consent of the parties. (Former L.Civ.R. 73.1 vacated eff. Dec. 1, 2015.)", "cite": "L.Civ.R. 72.2(b)" },
+      "mdnc": { "value": "Consent communicated to clerk by letter or by form available in clerk's office, signed by the party or attorney. Consent placed in the public court file only after the court orders the case referred. Once referred, consent may not be withdrawn without the referring District Judge's approval", "cite": "LR 73.1(a)–(b)" },
+      "wdnc": { "value": "Parties must discuss magistrate-judge jurisdiction at the Initial Attorneys' Conference and certify their position in the Certificate of IAC; if all consent, file the Joint Stipulation of Consent form by the LCvR 16.1(c) deadline. Failure to file within the time allowed is presumed a declination", "cite": "LCvR 73.1(b)–(e)" }
+    },
+    {
+      "id": "ecf-signature",
+      "category": "Filing & Service",
+      "topic": "ECF \"/s/\" signature conventions & retention of originals",
+      "ednc": { "value": "Electronic filing, including conformed-signature convention, governed by L.Civ.R. 5.1 and the court's CM/ECF Policy Manual (esp. § IV.D). Signature block format (name, firm, address, phone, fax, email, state bar no.) set by L.Civ.R. 10.1(f), (i)", "cite": "L.Civ.R. 5.1; 10.1(f), (i)" },
+      "mdnc": { "value": "When an attorney scans and files a document with original signatures of intrinsic value, the attorney must retain the original for 2 years after the time for appeal expires or receipt of an order terminating appeal. Multi-signature filings must include an image signature or \"/s/\" plus a certification that each signatory expressly authorized submission", "cite": "LR 5.3(e)(1)–(2)" },
+      "wdnc": { "value": "Governed by LCvR 5.2.1 and the court's Administrative Procedures; each attorney must establish an ECF account and uses the assigned ECF User ID/password as the signature for documents filed on that account", "cite": "LCvR 5.2.1; 83.1(d)–(e); CM/ECF Admin. Procedures" },
+      "notes": "Only MDNC sets a specific local-rule retention period (2 years post-appeal) for original signatures on scanned filings."
+    },
+    {
+      "id": "removed-action-procedure",
+      "category": "Post-Judgment & Removal",
+      "topic": "Removed action — post-removal procedure",
+      "ednc": { "value": "With notice of removal, file a civil cover sheet, supplemental removal cover sheet, and all state-court process/pleadings/orders as separate, distinctly-titled exhibits. File the § 1446(d) state-court notice within 7 days. Within 14 days after removal, counsel must file a notice of appearance, substitution, or motion to withdraw. Pending motions: if unsupported in state court, movant files a supporting memorandum within 14 days (response then runs from that filing); if supported, response is due 21 days after removal", "cite": "L.Civ.R. 5.3(a)–(d)" },
+      "mdnc": { "value": "No dedicated local rule for removed actions; follow 28 U.S.C. §§ 1446–1447 and Fed. R. Civ. P. 81(c) (including the 21-day period to answer or present other defenses after removal)", "cite": "—" },
+      "wdnc": { "value": "No dedicated post-removal procedural rule, but the removing party must serve the Case Assignment Notice, Notice of Availability of a United States Magistrate Judge, and Joint Stipulation of Consent on all parties with the notice of removal", "cite": "LCvR 73.1(b)" },
+      "notes": "EDNC is the only district with a comprehensive post-removal procedural rule; MDNC and WDNC default to the federal rules."
     }
   ]
 }
