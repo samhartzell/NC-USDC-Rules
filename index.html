@@ -24,9 +24,13 @@
   <div class="wrap">
     <div class="search-row">
       <input id="search" type="search" placeholder="Search rules (e.g. 'reply', 'font', 'summary judgment', '26(f)')" autocomplete="off" autofocus>
-      <button id="clear" type="button" aria-label="Clear search">Clear</button>
+      <button id="reset" type="button" aria-label="Reset all filters">Reset</button>
     </div>
     <div id="chips" class="chips" role="tablist" aria-label="Filter by category"></div>
+    <div class="district-row">
+      <span class="chip-label" id="districts-label">Districts:</span>
+      <div id="districts" class="chips chips-dist" role="group" aria-labelledby="districts-label"></div>
+    </div>
     <p id="status" class="status" aria-live="polite"></p>
   </div>
 </nav>
