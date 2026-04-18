@@ -73,6 +73,14 @@ a{color:var(--accent)}
 .district-row .chip-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
 .chips-dist{margin-top:0}
 
+.judge-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:8px}
+.judge-row .chip-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.judge-selects{display:flex;flex-wrap:wrap;gap:10px;flex:1}
+.judge-select-wrap{display:inline-flex;align-items:center;gap:6px;font-size:13px}
+.judge-select-label{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+.judge-select{font:inherit;font-size:13px;padding:5px 8px;background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:6px;max-width:260px}
+.judge-select:focus-visible{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent)}
+
 .status{margin:8px 0 0;color:var(--muted);font-size:13px;min-height:1.2em}
 
 .chip:focus-visible,#reset:focus-visible,.copy-link:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -107,6 +115,12 @@ main{padding:18px 0 40px}
 a.cite-link{display:inline-block;color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--rule)}
 a.cite-link:hover,a.cite-link:focus-visible{color:var(--accent);border-bottom-color:var(--accent)}
 .rule-row .notes{padding:8px 14px;font-size:13px;color:var(--muted);border-top:1px solid var(--rule);background:var(--subtle);font-style:italic}
+
+.cell-overlay{margin-top:10px;padding:8px 10px;background:var(--subtle);border-left:3px solid var(--accent);border-radius:4px;display:flex;flex-direction:column;gap:4px}
+.cell-overlay .overlay-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:11px}
+.cell-overlay .overlay-judge{font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.cell-overlay .overlay-fresh{color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px}
+.cell-overlay .value{font-size:13px;line-height:1.45}
 
 mark.hit{background:var(--hit);color:var(--hit-ink);padding:0 1px;border-radius:2px}
 
@@ -152,4 +166,6 @@ mark.hit{background:var(--hit);color:var(--hit-ink);padding:0 1px;border-radius:
   mark.hit{background:#fff;color:#000;font-weight:700;text-decoration:underline}
   .rule-row .topic .tag-diff{color:#000;border-color:#000}
   a.cite-link{color:#000;border-bottom-color:#000}
+  .cell-overlay{background:#fff;border-left-color:#000}
+  .cell-overlay .overlay-judge,.cell-overlay .overlay-fresh{color:#000}
 }

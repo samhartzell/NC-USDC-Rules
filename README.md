@@ -22,23 +22,33 @@ compares all three courts with citations to the governing local rule.
   `26(f)`, `LCvR 7.1`). Matches are highlighted and the row count updates live.
 - **Filter**: click a category chip (Deadlines, Page / Word Limits,
   Formatting, Filing & Service, Motion Practice, Discovery).
-- **Deep-link**: the URL hash reflects the current query + category; reload
-  safe, shareable.
+- **Judge overlays**: pick one judge per district from the *Judges*
+  dropdowns. Each of that district's cells will show a highlighted
+  overlay any time the assigned judge has a chambers-specific deviation
+  (courtesy-copy requirements, pre-motion conferences, non-standard
+  discovery-dispute formats). Overlays carry their own `lastUpdated`
+  date so it is obvious when the chambers data was last verified.
+- **Deep-link**: the URL hash reflects the current query, category,
+  visible districts, and selected judges; reload safe, shareable.
 - **Print**: `Ctrl/Cmd+P` gives a clean print layout (header collapses,
-  chips hidden).
+  chips hidden; overlays print alongside their rule).
 
 ## Structure
 
 ```
 index.html          single-page UI
-app.js              fetches data/rules.json; filter + render; no dependencies
+app.js              fetches data/rules.json + data/judges.json; filter + render; no dependencies
 styles.css          responsive + print styles
 data/
   rules.json        source of truth — one entry per topic, three district cells
+  judges.json       per-district roster + chambers overlays (optional; keyed by rule id)
 sources/
   EDNC-local-rules.md   provenance + rule index per district
   MDNC-local-rules.md
   WDNC-local-rules.md
+  judges.md             provenance for data/judges.json
+scripts/
+  sync-judges.py    offline tool — refreshes data/judges.json from chambers pages
 ```
 
 ## Data schema (`data/rules.json`)

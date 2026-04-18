@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "lastSync": "2026-04-18",
+    "rosterStatus": "initial seed; run scripts/sync-judges.py to refresh against the courts' live chambers pages",
+    "disclaimer": "Chambers practices change without notice. This layer highlights publicly known judge-specific deviations from the local rules. Always verify against the assigned judge's current standing order, individual practices, and any case-specific scheduling order before relying on any value shown here."
+  },
+  "judges": {
+    "ednc": [
+      {
+        "id": "myers-richard-e",
+        "name": "Richard E. Myers II",
+        "role": "district",
+        "status": "active",
+        "title": "Chief Judge",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "dever-james-c",
+        "name": "James C. Dever III",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "flanagan-louise-w",
+        "name": "Louise W. Flanagan",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "boyle-terrence-w",
+        "name": "Terrence W. Boyle",
+        "role": "district",
+        "status": "senior",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "howard-malcolm-j",
+        "name": "Malcolm J. Howard",
+        "role": "district",
+        "status": "senior",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "jones-robert-b-jr",
+        "name": "Robert B. Jones, Jr.",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "swank-kimberly-a",
+        "name": "Kimberly A. Swank",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "numbers-robert-t-ii",
+        "name": "Robert T. Numbers, II",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "meyers-brian-s",
+        "name": "Brian S. Meyers",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.nced.uscourts.gov/judges/default.aspx",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      }
+    ],
+    "mdnc": [
+      {
+        "id": "eagles-catherine-c",
+        "name": "Catherine C. Eagles",
+        "role": "district",
+        "status": "active",
+        "title": "Chief Judge",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "biggs-loretta-c",
+        "name": "Loretta C. Biggs",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "osteen-william-l-jr",
+        "name": "William L. Osteen, Jr.",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "schroeder-thomas-d",
+        "name": "Thomas D. Schroeder",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "tilley-n-carlton-jr",
+        "name": "N. Carlton Tilley, Jr.",
+        "role": "district",
+        "status": "senior",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "beaty-james-a-jr",
+        "name": "James A. Beaty, Jr.",
+        "role": "district",
+        "status": "senior",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "auld-l-patrick",
+        "name": "L. Patrick Auld",
+        "role": "magistrate",
+        "status": "active",
+        "title": "Chief Magistrate Judge",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "webster-joe-l",
+        "name": "Joe L. Webster",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "peake-joi-e",
+        "name": "Joi Elizabeth Peake",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.ncmd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      }
+    ],
+    "wdnc": [
+      {
+        "id": "conrad-robert-j-jr",
+        "name": "Robert J. Conrad, Jr.",
+        "role": "district",
+        "status": "active",
+        "title": "Chief Judge",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "whitney-frank-d",
+        "name": "Frank D. Whitney",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "cogburn-max-o-jr",
+        "name": "Max O. Cogburn, Jr.",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "reidinger-martin",
+        "name": "Martin Reidinger",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "bell-kenneth-d",
+        "name": "Kenneth D. Bell",
+        "role": "district",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "mullen-graham-c",
+        "name": "Graham C. Mullen",
+        "role": "district",
+        "status": "senior",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "cayer-david-s",
+        "name": "David S. Cayer",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "howell-dennis-l",
+        "name": "Dennis L. Howell",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "metcalf-w-carleton",
+        "name": "W. Carleton Metcalf",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      },
+      {
+        "id": "rodriguez-susan-c",
+        "name": "Susan C. Rodriguez",
+        "role": "magistrate",
+        "status": "active",
+        "chambersUrl": "https://www.ncwd.uscourts.gov/judges",
+        "standingOrders": [],
+        "lastUpdated": "2026-04-18",
+        "overlays": {}
+      }
+    ]
+  }
+}
