@@ -27,19 +27,28 @@ district's current PDF (linked in `sources/*.md` and `data/rules.json`).
   transpiler.
 - Do not introduce npm, bundlers, frameworks, TypeScript, CSS preprocessors,
   or a `package.json`. If a task seems to require one, stop and ask.
+- `scripts/` contains Python tooling (currently `sync-judges.py`) used to
+  refresh `data/judges.json` offline. These scripts are **not** shipped to
+  Pages — only the static site is. Keep it that way.
 
 ## File layout
 
 ```
 index.html                  single-page UI shell (header, search, chips, results, sources, footer)
-app.js                      fetches data/rules.json, filters, renders, hash routing
+app.js                      fetches data/rules.json + data/judges.json, filters, renders, hash routing
 styles.css                  responsive + print styles (CSS variables at top)
 data/
   rules.json                SOURCE OF TRUTH — one entry per topic, three district cells
+  judges.json               per-district roster + chambers overlays, keyed by rule id
 sources/
   EDNC-local-rules.md       provenance + index of rules cited in rules.json
   MDNC-local-rules.md
   WDNC-local-rules.md
+  judges.md                 provenance for data/judges.json (roster URLs, per-judge review dates)
+scripts/
+  sync-judges.py            tooling: refreshes data/judges.json from chambers pages
+  requirements.txt          Python deps for the sync script (not shipped)
+  README.md                 how to run the sync script
 .github/workflows/pages.yml GitHub Pages deploy (push to main → redeploy)
 README.md                   user-facing docs
 ```
@@ -95,25 +104,111 @@ Conventions:
   reason to reorder; the renderer groups by category but within a group it
   preserves JSON order.
 
+## Judges layer (`data/judges.json`)
+
+The judges layer sits on top of the base rule view. When a user picks a
+judge from the per-district dropdown, each of that district's cells
+gains a highlighted sub-block showing any known chambers-specific
+deviation plus a `lastUpdated` date. When no judge is picked, the layer
+is inert.
+
+### Schema
+
+```json
+{
+  "meta": {
+    "lastSync": "2026-04-18",
+    "rosterStatus": "…optional humans-only note…",
+    "disclaimer": "…"
+  },
+  "judges": {
+    "ednc": [
+      {
+        "id": "dever-james-c",
+        "name": "James C. Dever III",
+        "role": "district",            // "district" | "magistrate"
+        "status": "active",            // "active" | "senior"
+        "title": "Chief Judge",        // optional
+        "chambersUrl": "https://...",  // court's page for this judge
+        "standingOrders": [
+          { "title": "Standing Order re: Courtesy Copies",
+            "url": "https://...", "effective": "2024-01-15" }
+        ],
+        "lastUpdated": "2026-04-18",
+        "overlays": {
+          "courtesy-copies": {
+            "value": "Paper courtesy copies required for motions > 25 pages.",
+            "cite": "Dever Standing Order (Jan. 2024)",
+            "url": "https://..."
+          }
+        }
+      }
+    ],
+    "mdnc": [ ... ],
+    "wdnc": [ ... ]
+  }
+}
+```
+
+### Conventions
+
+- **`id`**: `lastname-firstname-middleinitial[-suffix]`. Stable. Don't
+  rename unless truly necessary.
+- **`overlays` keys must match `id` values in `data/rules.json`.** If
+  the rule id changes there, update every judge's overlay accordingly.
+  An overlay whose key doesn't match any rule id is silently invisible.
+- **Overlay `value` must quote / paraphrase the standing order
+  tightly.** Do not editorialize. If the standing order says "25 pages
+  or more", write that, not "long motions".
+- **Every overlay gets a `cite`**, ideally to a titled standing order
+  with an effective date. A `url` is strongly preferred so users can
+  open the source PDF.
+- **`lastUpdated`** is user-visible (rendered as `upd. YYYY-MM-DD` in
+  each overlay block). Bump it any time you touch that judge's
+  `overlays` or `standingOrders`.
+- **Senior judges still hear cases** — keep them in the roster.
+- **Missing overlay ≠ "rule does not apply"**, it means "no
+  chambers-specific deviation known". The site renders nothing in that
+  case rather than a misleading reassurance.
+
+### Sync script boundary
+
+`scripts/sync-judges.py` refreshes roster metadata (name, role, status,
+chambersUrl, standingOrders, lastUpdated) from the courts' sites. It
+**preserves** the hand-curated `overlays` object and any explicit
+`title` field. It does not attempt to parse standing-order PDFs into
+overlays — that is a human judgment call.
+
 ## How `app.js` works (so you don't re-read it each time)
 
-1. `fetch('data/rules.json', { cache: 'no-store' })` → parse → call `init()`.
+1. `fetch('data/rules.json', { cache: 'no-store' })` → parse → chain a
+   second (non-fatal) fetch for `data/judges.json` → call `init()`. A
+   missing or malformed `judges.json` hides the judge picker but
+   leaves the base view working.
 2. `init()` renders the sources block, builds category chips from the set of
    `r.category` values (first-occurrence order, with `All` prepended),
-   restores `state` from `location.hash` (`#cat=...&q=...`), binds events,
-   and calls `render()`.
+   renders the three per-district judge `<select>`s, restores `state`
+   from `location.hash` (`#cat=...&q=...&j=ednc:dever-james-c`), binds
+   events, and calls `render()`.
 3. `render()` filters by `state.category` + lowercased `state.query` (matched
-   against topic, category, notes, and each district's `value`/`cite`),
-   groups by category, and writes HTML into `#results`.
-4. Search is debounced 80ms. Query/category changes write to the URL hash via
-   `history.replaceState` (reload- and share-safe).
-5. Every string that touches HTML goes through `escapeHtml` / `escapeAttr`.
+   against topic, category, notes, each district's `value`/`cite`, and
+   any selected judge's overlay text for that rule), groups by category,
+   and writes HTML into `#results`.
+4. `renderCell` appends a `.cell-overlay` block per district whenever
+   `state.selectedJudge[district]` resolves to a judge with an
+   `overlays[rule.id]` entry. If there's no overlay for that rule, the
+   cell renders unchanged.
+5. Search is debounced 80ms. Query/category/judge changes write to the
+   URL hash via `history.replaceState` (reload- and share-safe).
+6. Every string that touches HTML goes through `escapeHtml` / `escapeAttr`.
    `highlight()` escapes first, then wraps matches in `<mark class="hit">`.
    **Preserve this**: any new field that ends up in rendered HTML must be
    escaped the same way. Do not build HTML from un-escaped user input.
 
 If you add a new field to a rule, update `matchesQuery` if it should be
-searchable, and update `renderRow` / `renderCell` to display it.
+searchable, and update `renderRow` / `renderCell` to display it. If you
+add a new field to a judge or overlay, mirror the same escape discipline
+in `renderOverlay`.
 
 ## Styles (`styles.css`)
 
@@ -202,4 +297,10 @@ logic, or large binary assets — everything here is shipped to end users.
   visible to users.
 - Don't add tracking, analytics, or external scripts to `index.html`.
 - Don't change `id` values without a deliberate reason.
+- Don't fabricate overlays in `data/judges.json`. If a chambers page
+  has no standing order on a topic, leave the overlay absent. An empty
+  object is correct; a guessed value is a malpractice trap.
+- Don't ship `scripts/` outputs or Python deps to the site. The sync
+  script is a tooling-side utility; GitHub Pages uploads the repo but
+  the Python files are inert there.
 - Don't commit `.DS_Store`, editor files, or `.claude/` (already gitignored).

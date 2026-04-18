@@ -15,7 +15,10 @@
     query: '',
     districts: DISTRICTS.slice(),
     diffsOnly: false,
-    target: ''
+    target: '',
+    judges: { ednc: [], mdnc: [], wdnc: [] },
+    judgesMeta: null,
+    selectedJudge: { ednc: '', mdnc: '', wdnc: '' }
   };
 
   var els = {
@@ -28,7 +31,9 @@
     results: document.getElementById('results'),
     sourcesList: document.getElementById('sources-list'),
     disclaimer: document.getElementById('disclaimer'),
-    controls: document.querySelector('.controls')
+    controls: document.querySelector('.controls'),
+    judges: document.getElementById('judges'),
+    judgeRow: document.getElementById('judge-row')
   };
 
   // ---------- Boot ----------
@@ -40,6 +45,21 @@
     .then(function (data) {
       state.rules = data.rules || [];
       state.meta = data.meta || {};
+      // Judges layer is optional — a missing / broken judges.json must
+      // not break the base rule view.
+      return fetch('data/judges.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    })
+    .then(function (jdata) {
+      if (jdata && jdata.judges) {
+        state.judges = {
+          ednc: jdata.judges.ednc || [],
+          mdnc: jdata.judges.mdnc || [],
+          wdnc: jdata.judges.wdnc || []
+        };
+        state.judgesMeta = jdata.meta || null;
+      }
       init();
     })
     .catch(function (err) {
@@ -53,6 +73,7 @@
     renderSources();
     renderChips();
     renderDistrictToggles();
+    renderJudgeSelects();
     restoreFromHash();
     bindEvents();
     render();
@@ -76,9 +97,11 @@
       state.districts = DISTRICTS.slice();
       state.diffsOnly = false;
       state.target = '';
+      state.selectedJudge = { ednc: '', mdnc: '', wdnc: '' };
       highlightChip();
       highlightDistrictToggles();
       highlightDiffsToggle();
+      resetJudgeSelectValues();
       syncHash();
       render();
       els.search.focus();
@@ -151,6 +174,11 @@
     if (state.query) parts.push('q=' + encodeURIComponent(state.query));
     if (state.districts.length !== DISTRICTS.length) parts.push('d=' + state.districts.join(','));
     if (state.diffsOnly) parts.push('diffs=1');
+    var jpairs = [];
+    DISTRICTS.forEach(function (d) {
+      if (state.selectedJudge[d]) jpairs.push(d + ':' + state.selectedJudge[d]);
+    });
+    if (jpairs.length) parts.push('j=' + jpairs.join(','));
     if (state.target) parts.push('rule=' + encodeURIComponent(state.target));
     var url = location.pathname + location.search + (parts.length ? '#' + parts.join('&') : '');
     history.replaceState(null, '', url);
@@ -169,6 +197,17 @@
         if (picked.length) state.districts = picked;
       }
       else if (k === 'diffs') state.diffsOnly = v === '1';
+      else if (k === 'j') {
+        var picks = { ednc: '', mdnc: '', wdnc: '' };
+        v.split(',').forEach(function (pair) {
+          var idx = pair.indexOf(':');
+          if (idx < 0) return;
+          var d = pair.slice(0, idx), jid = pair.slice(idx + 1);
+          if (DISTRICTS.indexOf(d) >= 0 && findJudge(d, jid)) picks[d] = jid;
+        });
+        state.selectedJudge = picks;
+        syncJudgeSelectValues();
+      }
       else if (k === 'rule') state.target = v;
     });
     highlightChip();
@@ -248,6 +287,103 @@
     });
   }
 
+  // ---------- Judge pickers ----------
+  function hasJudgeData() {
+    return !!(state.judges && (
+      (state.judges.ednc && state.judges.ednc.length) ||
+      (state.judges.mdnc && state.judges.mdnc.length) ||
+      (state.judges.wdnc && state.judges.wdnc.length)
+    ));
+  }
+
+  function findJudge(district, id) {
+    var roster = state.judges && state.judges[district];
+    if (!roster) return null;
+    for (var i = 0; i < roster.length; i++) {
+      if (roster[i].id === id) return roster[i];
+    }
+    return null;
+  }
+
+  // Returns just the last-name token for compact status/badge display.
+  // Strips trailing suffixes ("Jr.", "III") and commas.
+  function lastName(full) {
+    var parts = String(full || '').replace(/,/g, '').trim().split(/\s+/);
+    var i = parts.length - 1;
+    while (i > 0 && /^(Jr\.?|Sr\.?|II|III|IV|V)$/i.test(parts[i])) i--;
+    return parts[i] || String(full || '');
+  }
+
+  function renderJudgeSelects() {
+    if (!els.judges || !els.judgeRow) return;
+    if (!hasJudgeData()) {
+      els.judgeRow.hidden = true;
+      return;
+    }
+    els.judgeRow.hidden = false;
+    var html = DISTRICTS.map(function (d) {
+      var roster = (state.judges[d] || []).slice().sort(function (a, b) {
+        return lastName(a.name).toLowerCase().localeCompare(lastName(b.name).toLowerCase());
+      });
+      var distOpts = roster.filter(function (j) { return j.role === 'district'; });
+      var magOpts = roster.filter(function (j) { return j.role === 'magistrate'; });
+      var selected = state.selectedJudge[d] || '';
+      var parts = [];
+      parts.push(
+        '<label class="judge-select-wrap">' +
+        '<span class="judge-select-label">' + DISTRICT_LABEL[d] + '</span>' +
+        '<select class="judge-select" data-dist="' + d + '" aria-label="' +
+          escapeAttr(DISTRICT_LABEL[d] + ' judge') + '">'
+      );
+      parts.push('<option value="">— none —</option>');
+      if (distOpts.length) {
+        parts.push('<optgroup label="District judges">');
+        distOpts.forEach(function (j) { parts.push(judgeOption(j, selected)); });
+        parts.push('</optgroup>');
+      }
+      if (magOpts.length) {
+        parts.push('<optgroup label="Magistrate judges">');
+        magOpts.forEach(function (j) { parts.push(judgeOption(j, selected)); });
+        parts.push('</optgroup>');
+      }
+      parts.push('</select></label>');
+      return parts.join('');
+    }).join('');
+    els.judges.innerHTML = html;
+    Array.prototype.forEach.call(els.judges.querySelectorAll('.judge-select'), function (sel) {
+      sel.addEventListener('change', function () {
+        var d = sel.getAttribute('data-dist');
+        state.selectedJudge[d] = sel.value;
+        state.target = '';
+        syncHash();
+        render();
+      });
+    });
+  }
+
+  function judgeOption(j, selected) {
+    var label = j.name;
+    if (j.status === 'senior') label += ' (senior)';
+    if (j.title) label += ' — ' + j.title;
+    return '<option value="' + escapeAttr(j.id) + '"' +
+      (j.id === selected ? ' selected' : '') + '>' + escapeHtml(label) + '</option>';
+  }
+
+  function syncJudgeSelectValues() {
+    if (!els.judges) return;
+    Array.prototype.forEach.call(els.judges.querySelectorAll('.judge-select'), function (sel) {
+      var d = sel.getAttribute('data-dist');
+      sel.value = state.selectedJudge[d] || '';
+    });
+  }
+
+  function resetJudgeSelectValues() {
+    if (!els.judges) return;
+    Array.prototype.forEach.call(els.judges.querySelectorAll('.judge-select'), function (sel) {
+      sel.value = '';
+    });
+  }
+
   // ---------- Sources ----------
   function renderSources() {
     var s = state.meta && state.meta.sources;
@@ -279,12 +415,19 @@
     } else {
       els.results.innerHTML = groupByCategory(filtered).map(renderGroup).join('');
     }
+    var judgePicks = [];
+    DISTRICTS.forEach(function (d) {
+      if (!state.selectedJudge[d]) return;
+      var j = findJudge(d, state.selectedJudge[d]);
+      if (j) judgePicks.push(lastName(j.name) + ' (' + DISTRICT_LABEL[d] + ')');
+    });
     els.status.textContent = filtered.length + (filtered.length === 1 ? ' rule' : ' rules') +
       (q ? ' matching \u201C' + state.query + '\u201D' : '') +
       (cat !== 'All' ? ' in ' + cat : '') +
       (state.districts.length !== DISTRICTS.length ? ' · showing ' +
         state.districts.map(function (d) { return DISTRICT_LABEL[d]; }).join(' + ') : '') +
-      (diffsActive ? ' · differences only' : '') + '.';
+      (diffsActive ? ' · differences only' : '') +
+      (judgePicks.length ? ' · overlays: ' + judgePicks.join(', ') : '') + '.';
   }
 
   function rowDiffers(r, districts) {
@@ -306,6 +449,19 @@
       r.ednc && r.ednc.value, r.ednc && r.ednc.cite,
       r.mdnc && r.mdnc.value, r.mdnc && r.mdnc.cite,
       r.wdnc && r.wdnc.value, r.wdnc && r.wdnc.cite];
+    // Any selected judge's overlay text for this rule is visible on
+    // screen, so it should also be searchable — otherwise a user could
+    // see a matching overlay disappear when they type the matching term.
+    for (var di = 0; di < DISTRICTS.length; di++) {
+      var d = DISTRICTS[di];
+      var jid = state.selectedJudge[d];
+      if (!jid) continue;
+      var judge = findJudge(d, jid);
+      if (!judge) continue;
+      parts.push(judge.name);
+      var ov = judge.overlays && judge.overlays[r.id];
+      if (ov) { parts.push(ov.value); parts.push(ov.cite); }
+    }
     for (var i = 0; i < parts.length; i++) {
       if (parts[i] && String(parts[i]).toLowerCase().indexOf(q) >= 0) return true;
     }
@@ -332,7 +488,7 @@
     var n = state.districts.length;
     var gridStyle = 'grid-template-columns:repeat(' + n + ',1fr)';
     var cells = state.districts.map(function (d) {
-      return renderCell(d, r[d], q);
+      return renderCell(d, r, q);
     }).join('');
     var rid = escapeAttr(r.id || '');
     // Show the Differs badge only when the user has narrowed the district set
@@ -353,9 +509,14 @@
       '</article>';
   }
 
-  function renderCell(district, c, q) {
+  function renderCell(district, rule, q) {
     var label = DISTRICT_LABEL[district] || String(district).toUpperCase();
-    if (!c) return '<div class="cell"><div class="district">' + label + '</div><div class="value">—</div></div>';
+    var c = rule[district];
+    var overlayHtml = renderOverlay(district, rule, q);
+    if (!c) {
+      return '<div class="cell"><div class="district">' + label + '</div>' +
+        '<div class="value">—</div>' + overlayHtml + '</div>';
+    }
     var src = state.meta && state.meta.sources && state.meta.sources[district];
     var citeHtml = '';
     if (c.cite) {
@@ -371,6 +532,39 @@
     return '<div class="cell">' +
       '<div class="district">' + label + '</div>' +
       '<div class="value">' + highlight(c.value, q) + '</div>' +
+      citeHtml +
+      overlayHtml +
+      '</div>';
+  }
+
+  function renderOverlay(district, rule, q) {
+    var jid = state.selectedJudge[district];
+    if (!jid) return '';
+    var judge = findJudge(district, jid);
+    if (!judge) return '';
+    var ov = judge.overlays && judge.overlays[rule.id];
+    if (!ov) return '';
+    var head = '<div class="overlay-head">' +
+      '<span class="overlay-judge">' + escapeHtml(judge.name) + '</span>' +
+      (judge.lastUpdated
+        ? '<span class="overlay-fresh" title="Judge data last verified">upd. ' +
+          escapeHtml(judge.lastUpdated) + '</span>'
+        : '') +
+      '</div>';
+    var citeInner = ov.cite ? highlight(ov.cite, q) : '';
+    var citeHtml = '';
+    if (ov.url && ov.cite) {
+      citeHtml = '<a class="cite cite-link" href="' + escapeAttr(ov.url) +
+        '" target="_blank" rel="noopener" title="Open standing order">' +
+        citeInner + '</a>';
+    } else if (ov.cite) {
+      citeHtml = '<div class="cite">' + citeInner + '</div>';
+    } else if (ov.url) {
+      citeHtml = '<a class="cite cite-link" href="' + escapeAttr(ov.url) +
+        '" target="_blank" rel="noopener">standing order</a>';
+    }
+    return '<div class="cell-overlay">' + head +
+      '<div class="value">' + highlight(ov.value || '', q) + '</div>' +
       citeHtml +
       '</div>';
   }
