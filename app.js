@@ -14,6 +14,7 @@
     category: 'All',
     query: '',
     districts: DISTRICTS.slice(),
+    diffsOnly: false,
     target: ''
   };
 
@@ -22,10 +23,12 @@
     reset: document.getElementById('reset'),
     chips: document.getElementById('chips'),
     districts: document.getElementById('districts'),
+    diffsOnly: document.getElementById('diffs-only'),
     status: document.getElementById('status'),
     results: document.getElementById('results'),
     sourcesList: document.getElementById('sources-list'),
-    disclaimer: document.getElementById('disclaimer')
+    disclaimer: document.getElementById('disclaimer'),
+    controls: document.querySelector('.controls')
   };
 
   // ---------- Boot ----------
@@ -53,6 +56,7 @@
     restoreFromHash();
     bindEvents();
     render();
+    updateStickyOffset();
     if (state.target) focusTarget(state.target);
   }
 
@@ -70,13 +74,24 @@
       state.query = '';
       state.category = 'All';
       state.districts = DISTRICTS.slice();
+      state.diffsOnly = false;
       state.target = '';
       highlightChip();
       highlightDistrictToggles();
+      highlightDiffsToggle();
       syncHash();
       render();
       els.search.focus();
     });
+    if (els.diffsOnly) {
+      els.diffsOnly.addEventListener('click', function () {
+        state.diffsOnly = !state.diffsOnly;
+        state.target = '';
+        highlightDiffsToggle();
+        syncHash();
+        render();
+      });
+    }
     window.addEventListener('hashchange', function () {
       restoreFromHash();
       render();
@@ -88,6 +103,45 @@
       var id = btn.getAttribute('data-rule-id');
       if (id) copyRuleLink(id, btn);
     });
+    document.addEventListener('keydown', handleShortcut);
+    window.addEventListener('resize', debounce(updateStickyOffset, 120));
+  }
+
+  function handleShortcut(e) {
+    // Esc inside the search clears the query.
+    if (e.key === 'Escape' && document.activeElement === els.search && els.search.value) {
+      els.search.value = '';
+      state.query = '';
+      state.target = '';
+      syncHash();
+      render();
+      e.preventDefault();
+      return;
+    }
+    // Ignore shortcuts while typing in another editable surface.
+    var t = e.target;
+    var tag = t && t.tagName;
+    var editable = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' ||
+      (t && t.isContentEditable);
+    var metaK = (e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey);
+    if (metaK) {
+      els.search.focus();
+      els.search.select();
+      e.preventDefault();
+      return;
+    }
+    if (editable) return;
+    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      els.search.focus();
+      els.search.select();
+      e.preventDefault();
+    }
+  }
+
+  function updateStickyOffset() {
+    if (!els.controls) return;
+    var h = els.controls.offsetHeight || 0;
+    document.documentElement.style.setProperty('--sticky-offset', h + 'px');
   }
 
   // ---------- Hash state ----------
@@ -96,6 +150,7 @@
     if (state.category && state.category !== 'All') parts.push('cat=' + encodeURIComponent(state.category));
     if (state.query) parts.push('q=' + encodeURIComponent(state.query));
     if (state.districts.length !== DISTRICTS.length) parts.push('d=' + state.districts.join(','));
+    if (state.diffsOnly) parts.push('diffs=1');
     if (state.target) parts.push('rule=' + encodeURIComponent(state.target));
     var url = location.pathname + location.search + (parts.length ? '#' + parts.join('&') : '');
     history.replaceState(null, '', url);
@@ -113,10 +168,19 @@
         var picked = v.split(',').filter(function (x) { return DISTRICTS.indexOf(x) >= 0; });
         if (picked.length) state.districts = picked;
       }
+      else if (k === 'diffs') state.diffsOnly = v === '1';
       else if (k === 'rule') state.target = v;
     });
     highlightChip();
     highlightDistrictToggles();
+    highlightDiffsToggle();
+  }
+
+  function highlightDiffsToggle() {
+    if (!els.diffsOnly) return;
+    els.diffsOnly.setAttribute('aria-pressed', state.diffsOnly ? 'true' : 'false');
+    if (state.districts.length < 2) els.diffsOnly.setAttribute('aria-disabled', 'true');
+    else els.diffsOnly.removeAttribute('aria-disabled');
   }
 
   // ---------- Chips ----------
@@ -168,6 +232,7 @@
         }
         state.target = '';
         highlightDistrictToggles();
+        highlightDiffsToggle();
         syncHash();
         render();
       });
@@ -201,10 +266,12 @@
   function render() {
     var q = state.query.toLowerCase();
     var cat = state.category;
+    var diffsActive = state.diffsOnly && state.districts.length >= 2;
     var filtered = state.rules.filter(function (r) {
       if (cat !== 'All' && r.category !== cat) return false;
-      if (!q) return true;
-      return matchesQuery(r, q);
+      if (q && !matchesQuery(r, q)) return false;
+      if (diffsActive && !rowDiffers(r, state.districts)) return false;
+      return true;
     });
 
     if (filtered.length === 0) {
@@ -216,7 +283,22 @@
       (q ? ' matching \u201C' + state.query + '\u201D' : '') +
       (cat !== 'All' ? ' in ' + cat : '') +
       (state.districts.length !== DISTRICTS.length ? ' · showing ' +
-        state.districts.map(function (d) { return DISTRICT_LABEL[d]; }).join(' + ') : '') + '.';
+        state.districts.map(function (d) { return DISTRICT_LABEL[d]; }).join(' + ') : '') +
+      (diffsActive ? ' · differences only' : '') + '.';
+  }
+
+  function rowDiffers(r, districts) {
+    if (!districts || districts.length < 2) return false;
+    var first = normCell(r[districts[0]]);
+    for (var i = 1; i < districts.length; i++) {
+      if (normCell(r[districts[i]]) !== first) return true;
+    }
+    return false;
+  }
+
+  function normCell(c) {
+    if (!c || c.value == null) return '';
+    return String(c.value).toLowerCase().replace(/\s+/g, ' ').trim();
   }
 
   function matchesQuery(r, q) {
@@ -250,14 +332,18 @@
     var n = state.districts.length;
     var gridStyle = 'grid-template-columns:repeat(' + n + ',1fr)';
     var cells = state.districts.map(function (d) {
-      return renderCell(DISTRICT_LABEL[d], r[d], q);
+      return renderCell(d, r[d], q);
     }).join('');
     var rid = escapeAttr(r.id || '');
+    // Show the Differs badge only when the user has narrowed the district set
+    // (at 3-wide, every row differs textually and the badge adds no signal).
+    var showDiffBadge = n < DISTRICTS.length && rowDiffers(r, state.districts);
     return '<article class="rule-row" id="rule-' + rid + '">' +
       '<div class="topic">' +
         '<span class="topic-text">' + highlight(r.topic, q) + '</span>' +
         '<span class="topic-meta">' +
           '<span class="tag">' + escapeHtml(r.category) + '</span>' +
+          (showDiffBadge ? '<span class="tag tag-diff" title="The visible districts disagree on this rule">Differs</span>' : '') +
           (r.id ? '<button class="copy-link" type="button" data-rule-id="' + rid +
             '" aria-label="Copy link to this rule" title="Copy link to this rule">#</button>' : '') +
         '</span>' +
@@ -267,12 +353,25 @@
       '</article>';
   }
 
-  function renderCell(label, c, q) {
+  function renderCell(district, c, q) {
+    var label = DISTRICT_LABEL[district] || String(district).toUpperCase();
     if (!c) return '<div class="cell"><div class="district">' + label + '</div><div class="value">—</div></div>';
+    var src = state.meta && state.meta.sources && state.meta.sources[district];
+    var citeHtml = '';
+    if (c.cite) {
+      var inner = highlight(c.cite, q);
+      if (src && src.url) {
+        citeHtml = '<a class="cite cite-link" href="' + escapeAttr(src.url) +
+          '" target="_blank" rel="noopener" title="Open ' + escapeAttr(label) +
+          ' ' + escapeAttr(src.rulesTitle || 'local rules') + ' (PDF)">' + inner + '</a>';
+      } else {
+        citeHtml = '<div class="cite">' + inner + '</div>';
+      }
+    }
     return '<div class="cell">' +
       '<div class="district">' + label + '</div>' +
       '<div class="value">' + highlight(c.value, q) + '</div>' +
-      (c.cite ? '<div class="cite">' + highlight(c.cite, q) + '</div>' : '') +
+      citeHtml +
       '</div>';
   }
 
