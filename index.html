@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<a class="skip-link" href="#results">Skip to results</a>
 <header class="site-header">
   <div class="wrap">
     <h1>NC Federal Local Rules — Quick Reference</h1>
@@ -23,20 +24,23 @@
 <nav class="controls">
   <div class="wrap">
     <div class="search-row">
+      <label for="search" class="sr-only">Search rules</label>
       <input id="search" type="search" placeholder="Search rules (e.g. 'reply', 'font', 'summary judgment', '26(f)')" autocomplete="off" autofocus>
+      <span class="kbd-hint" aria-hidden="true">Press <kbd>/</kbd> to search</span>
       <button id="reset" type="button" aria-label="Reset all filters">Reset</button>
     </div>
     <div id="chips" class="chips" role="tablist" aria-label="Filter by category"></div>
     <div class="district-row">
       <span class="chip-label" id="districts-label">Districts:</span>
       <div id="districts" class="chips chips-dist" role="group" aria-labelledby="districts-label"></div>
+      <button id="diffs-only" class="chip chip-diffs" type="button" aria-pressed="false" title="Show only rules where the visible districts disagree">Differences only</button>
     </div>
     <p id="status" class="status" aria-live="polite"></p>
   </div>
 </nav>
 
 <main class="wrap">
-  <section id="results" aria-label="Rules comparison">
+  <section id="results" aria-label="Rules comparison" tabindex="-1">
     <div id="loading" class="loading">Loading rules…</div>
   </section>
   <section id="sources" class="sources" aria-label="Source rules">
