@@ -1,0 +1,57 @@
+name: Sync judges roster
+
+on:
+  schedule:
+    # Mondays 12:00 UTC (~07:00/08:00 US Eastern). Off-hours for the
+    # courts' web servers, near the start of the maintainer's week.
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-judges
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Run sync-judges.py
+        # Writes data/judges.json. Exits 2 on any roster-fetch failure,
+        # which fails this step and skips PR creation. That is the
+        # intended signal — see scripts/sync-judges.py docstring.
+        run: python scripts/sync-judges.py
+
+      - name: Open pull request with diff
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/sync-judges
+          delete-branch: true
+          add-paths: data/judges.json
+          commit-message: "judges: sync roster"
+          title: "judges: sync roster"
+          body: |
+            Automated run of `scripts/sync-judges.py`.
+
+            Review the diff against each district's chambers page
+            before merging. Roster metadata only — `overlays` are
+            **not** auto-populated; author them by hand from any
+            newly discovered URLs in `standingOrders[]`. See
+            `scripts/README.md` ("Review checklist after running")
+            and `CLAUDE.md` ("Judges layer" → editorial rules).

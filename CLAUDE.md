@@ -263,6 +263,14 @@ every push to `main`, and supports manual `workflow_dispatch`. There is no
 build step; `path: .` uploads the whole repo. Do not add secrets, server-side
 logic, or large binary assets — everything here is shipped to end users.
 
+`.github/workflows/sync-judges.yml` runs `scripts/sync-judges.py` on a
+weekly schedule (Mondays 12:00 UTC) and on `workflow_dispatch`. When the
+script produces a diff it opens a PR titled `judges: sync roster` from
+the stable branch `bot/sync-judges` against `main`. The workflow only
+touches roster metadata — `overlays` are still hand-curated, and the
+"don't fabricate overlays" rule below applies to anything merged from
+that PR.
+
 ## Branching and commits
 
 - Development branches follow the pattern `claude/<short-topic>-<suffix>`
