@@ -67,6 +67,16 @@ the file).
 - Quarterly as a hygiene pass.
 - After updating `ROSTER_URLS` if a court restructures its site.
 
+### Automation
+
+`.github/workflows/sync-judges.yml` runs this script every Monday at
+12:00 UTC and on manual dispatch, opening a PR (`judges: sync roster`)
+when there is a diff. Local runs are still useful for (a) ad-hoc
+verification before the next scheduled run, (b) testing changes to the
+script itself, and (c) overlay-curation work where you want to surface
+a newly published standing-order URL right now rather than waiting for
+Monday.
+
 ### Editorial boundary
 
 Do not add overlays from this script. Overlay wording must quote the
