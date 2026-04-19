@@ -1,8 +1,74 @@
 # scripts/
 
-Tooling for maintaining the judges layer. **The site itself has no build
-step** — these scripts exist only to refresh `data/judges.json`. They do
-not run on GitHub Pages.
+Tooling for maintaining the data files. **The site itself has no build
+step** — these scripts exist only to refresh `data/judges.json` and
+validate `data/rules.json` / `data/judges.json` before commits. They
+do not run on GitHub Pages.
+
+Current tooling:
+
+- `validate-rules.py` — stdlib-only structural validator for the two
+  data files.
+- `verify-rules.md` — playbook for an LLM-assisted accuracy sweep
+  against each district's current PDF.
+- `sync-judges.py` — roster refresh for `data/judges.json`.
+
+## `validate-rules.py`
+
+Checks the structure of `data/rules.json` and `data/judges.json`. No
+dependencies beyond the Python standard library.
+
+### Run
+
+```
+python3 scripts/validate-rules.py            # PASS/FAIL summary
+python3 scripts/validate-rules.py --verbose  # list every check
+```
+
+Exit codes: `0` pass, `1` structural failures, `2` `rules.json` missing
+or unparseable.
+
+### What it catches
+
+- Missing `value` or `cite` on any of the 114 district-rule cells.
+- Citation prefixes that do not match the district's nomenclature
+  (`L.Civ.R.` for EDNC, `LR` for MDNC, `LCvR`/`LCrR` for WDNC).
+  Parenthetical cites such as `(judge preferences)` or
+  `(Fed. R. Civ. P. 30)` are permitted on any district as explicit
+  "no-local-rule" markers.
+- Duplicate or non-kebab-case rule ids.
+- Judge overlay keys that do not match any rule id (the "silent
+  invisibility" trap called out in `CLAUDE.md`).
+- Malformed `lastUpdated` dates on judges.
+
+### What it does NOT catch
+
+Whether a `value` is factually correct. That is semantic work and
+belongs to the accuracy sweep described in `verify-rules.md`.
+
+### When to run
+
+- Before every commit that touches `data/`.
+- After applying edits surfaced by an accuracy sweep.
+- As a quick sanity check if the site starts rendering `—` in places
+  it did not before.
+
+
+## `verify-rules.md`
+
+A step-by-step playbook for an LLM-assisted accuracy sweep of one
+district. The sweep fetches the district's PDF, walks every cell,
+and writes findings to `reports/accuracy-<district>-<date>.md` for
+human review. **The sweep never edits `data/rules.json` directly** —
+humans apply corrections.
+
+See the file itself for the full procedure. Summary: run once per
+district as a baseline, then again whenever a district amends its
+local rules.
+
+`reports/` and `scripts/.pdf-cache/` are gitignored; the signed-off
+edits to `data/rules.json` are what lands in history, not the drafts.
+
 
 ## `sync-judges.py`
 

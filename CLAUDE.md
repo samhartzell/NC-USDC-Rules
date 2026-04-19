@@ -27,9 +27,11 @@ district's current PDF (linked in `sources/*.md` and `data/rules.json`).
   transpiler.
 - Do not introduce npm, bundlers, frameworks, TypeScript, CSS preprocessors,
   or a `package.json`. If a task seems to require one, stop and ask.
-- `scripts/` contains Python tooling (currently `sync-judges.py`) used to
-  refresh `data/judges.json` offline. These scripts are **not** shipped to
-  Pages — only the static site is. Keep it that way.
+- `scripts/` contains Python tooling (`validate-rules.py`,
+  `sync-judges.py`) and the accuracy-sweep playbook (`verify-rules.md`).
+  These are used offline to validate and refresh the data files. They
+  are **not** shipped to Pages — only the static site is. Keep it that
+  way.
 
 ## File layout
 
@@ -46,9 +48,11 @@ sources/
   WDNC-local-rules.md
   judges.md                 provenance for data/judges.json (roster URLs, per-judge review dates)
 scripts/
+  validate-rules.py         stdlib-only structural validator for data/
+  verify-rules.md           LLM accuracy-sweep playbook (run per district)
   sync-judges.py            tooling: refreshes data/judges.json from chambers pages
-  requirements.txt          Python deps for the sync script (not shipped)
-  README.md                 how to run the sync script
+  requirements.txt          Python deps for sync-judges.py only (not shipped)
+  README.md                 how to run the scripts and the playbook
 .github/workflows/pages.yml GitHub Pages deploy (push to main → redeploy)
 README.md                   user-facing docs
 ```
@@ -241,6 +245,25 @@ There is no test suite, linter, or type checker. After any change, smoke-test:
 3. Clicking a category chip filters; the URL hash updates.
 4. Reloading with a hash (`#cat=Deadlines&q=reply`) restores state.
 5. Print preview still looks clean.
+
+## Verifying accuracy
+
+Two-part check, both under `scripts/`:
+
+1. **Structural validator** — `python3 scripts/validate-rules.py`.
+   Catches missing cells, wrong citation prefixes, duplicate ids,
+   orphaned judge overlays, and bad `lastUpdated` dates. Run before
+   every commit that touches `data/`.
+
+2. **LLM accuracy sweep** — `scripts/verify-rules.md`. A playbook a
+   Claude Code session follows to verify one district's cells
+   against its current PDF. Findings land in `reports/` (gitignored)
+   for human review; the sweep never edits `data/rules.json`
+   directly. Run once per district as a baseline, and again after
+   any district amends its local rules.
+
+The validator is fast and objective. The sweep is slow and requires
+judgment. Neither replaces the other.
 
 ## Updating rules when a district amends its local rules
 
